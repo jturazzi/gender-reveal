@@ -1,0 +1,24 @@
+{
+  "name": "gender-reveal",
+  "version": "1.0.0",
+  "description": "A simple application to make a gender reveal.",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app.js",
+    "prod": "pm2 start app.js --name gender-reveal"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jturazzi/gender-reveal.git"
+  },
+  "author": "Jérémy Turazzi (jturazzi)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jturazzi/gender-reveal/issues"
+  },
+  "homepage": "https://github.com/jturazzi/gender-reveal#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.1"
+  }
+}
