@@ -15,7 +15,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 50px;
+            font-size: 40px;
             font-weight: bold;
             text-align: center;
         }
@@ -29,7 +29,7 @@
         const message = document.getElementById('message');
 
         socket.on('refresh', function (data) { document.body.style.backgroundColor = data.color; message.textContent = data.message; });
-        socket.on('countdown', function (data) { message.textContent = data.time; });
+        socket.on('countdown', function (data) { message.textContent = data.message; });
     </script>
 </body>
 </html>

@@ -16,7 +16,7 @@ function ResetInfos() {
   // Resetting the information object
   infos.color = 'white';
   infos.message = 'En attente de la révélation...';
-  infos.time = 21;
+  infos.time = 31;
   infos.active = false;
   io.emit('refresh', infos);
 }
@@ -43,10 +43,14 @@ io.on('connection', (socket) => {
         // Countdown
         const interval = setInterval(() => {
           infos.time -= 1;
+          if (infos.time > 60) {
+            infos.message = `Révélation dans ${Math.floor(infos.time / 60)} minutes ${(infos.time % 60)} secondes`;
+            console.log(`Révélation dans ${Math.floor(infos.time / 60)} minutes ${(infos.time % 60)} secondes`);
+          } else {
+            infos.message = `Révélation dans ${infos.time} secondes`;
+            console.log(`Révélation dans ${infos.time} secondes`);
+          }
           io.emit('countdown', infos);
-          infos.message = infos.time;
-          console.log(`${infos.time}`);
-
           if (infos.time === 0) {
             clearInterval(interval);
 
@@ -73,6 +77,6 @@ app.get('/admin', (req, res) => {
   res.sendFile(`${__dirname}/public/admin.html`);
 });
 
-server.listen(9999, () => {
-  console.log('Application launched on port 9999 !');
+server.listen(3000, () => {
+  console.log('Application launched on port 3000 !');
 });
