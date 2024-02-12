@@ -8,19 +8,19 @@
     <meta name="robots" content="noindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://bootswatch.com/5/sketchy/bootstrap.min.css">
+    <link rel="stylesheet" href="https://bootswatch.com/_vendor/bootstrap/dist/css/bootstrap.min.css">
     <style>
         #message {
             position: absolute;
             top: 30%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 30px;
+            font-size: 20px;
             text-align: center;
         }
         #message2 {
             position: absolute;
-            top: 40%;
+            top: 35%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 30px;
@@ -28,7 +28,7 @@
         }
         #message3 {
             position: absolute;
-            top: 60%;
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
@@ -36,20 +36,29 @@
     </style>
 </head>
 <body>
-    <div id="message">Utilisateurs connectés : </div>
+    <div id="message">Utilisateurs :</div>
     <div id="message2"></div>
     <div id="message3">
-        <button onclick="socketEmit('boy')" class="btn btn-outline-primary">Garçon</button>
         <br><br>
-        <button onclick="socketEmit('girl')" class="btn btn-outline-primary">Fille</button>
+        Secondes :
+        <input type="number" id="time" name="time" value="">
         <br><br>
-        <button onclick="socketEmit('reset')" class="btn btn-outline-primary">Reset</button>
+        <button onclick="socketEmit('boy')" class="btn btn-primary">Garçon</button>
+        <button onclick="socketEmit('girl')" class="btn btn-primary">Fille</button>
+        <br><br>
+        <button onclick="socketEmit('reset')" class="btn btn-secondary">Reset</button>
     </div>
     
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
         const message = document.getElementById('message2');
+        const inputField = document.getElementById('time');
+
+        inputField.addEventListener('input', (event) => {
+            const inputValue = event.target.value;
+            socket.emit('time', inputValue);
+        });
 
         socket.on('refresh', function (data) { message.textContent = data.connection; });
 
