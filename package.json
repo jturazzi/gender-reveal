@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/jturazzi/gender-reveal#readme",
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.7.1"
+    "express": "^4.19.1",
+    "socket.io": "^4.7.5"
   }
 }
